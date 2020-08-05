@@ -1,5 +1,6 @@
 import {FilterValueType} from "./App";
 import React from "react";
+import {Button} from "@material-ui/core";
 
 type FilterBtnType = {
     changeFilter: (value: FilterValueType, todoListID: string) => void
@@ -13,17 +14,27 @@ export function FilterBtn(props: FilterBtnType) {
     const changeFilterCompleted = () => props.changeFilter('completed', props.id)
 
     return <div>
-        <button
-            className={props.filter === 'all' ? 'active' : ''}
-            onClick={changeFilterAll}>All
-        </button>
-        <button
-            className={props.filter === 'active' ? 'active' : ''}
-            onClick={changeFilterActive}>Active
-        </button>
-        <button
-            className={props.filter === 'completed' ? 'active' : ''}
-            onClick={changeFilterCompleted}>Completed
-        </button>
+        <Button
+            color={props.filter === 'all' ? 'secondary' : 'default'}
+            onClick={changeFilterAll}
+            variant={"outlined"}
+            size={"small"}
+        >
+            All
+        </Button>
+        <Button
+            color={props.filter === 'active' ? `secondary` : 'default'}
+            onClick={changeFilterActive}
+            variant={"outlined"}
+            size={"small"}>
+            Active
+        </Button>
+        <Button
+            color={props.filter === 'completed' ? 'secondary' : 'default'}
+            onClick={changeFilterCompleted}
+            variant={"outlined"}
+            size={"small"}>
+            Completed
+        </Button>
     </div>
 }

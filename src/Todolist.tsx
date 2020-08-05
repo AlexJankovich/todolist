@@ -3,6 +3,8 @@ import {FilterValueType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {FilterBtn} from "./filterBtn";
+import {Checkbox, IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 export type TaskType = {
     id: string,
@@ -37,16 +39,21 @@ export const TodoList = (props: PropsType) => {
             props.ChangeTaskTitle(t.id, newTitle, props.id)
         }
         return (
-            <li key={t.id}
+            <div key={t.id}
                 className={t.isDone ? 'is-done' : ''}>
-                <input key={t.id}
-                       type="checkbox"
-                       checked={t.isDone}
-                       onChange={changeStatus}/>
+                <Checkbox checked={t.isDone}
+                          onChange={changeStatus}
+                />
+                {/*<input key={t.id}*/}
+                {/*       type="checkbox"*/}
+                {/*       checked={t.isDone}*/}
+                {/*       onChange={changeStatus}/>*/}
                 <EditableSpan title={t.title}
                               saveNewTitle={changeTaskTitle}/>
-                <button onClick={removeTask}>X</button>
-            </li>)
+                <IconButton onClick={removeTask}>
+                    <Delete/>
+                </IconButton>
+            </div>)
     }))
 
     const removeListHandler = () => {
@@ -66,12 +73,18 @@ export const TodoList = (props: PropsType) => {
             <EditableSpan title={props.title}
                           saveNewTitle={changeTodoListTitle}
             />
-            <button onClick={removeListHandler}>X</button>
+            <IconButton onClick={removeListHandler}
+            size={"small"}>
+                <Delete/>
+            </IconButton>
+            {/*<Button onClick={removeListHandler}*/}
+            {/*        variant={"contained"}*/}
+            {/*        color={"primary"}>X</Button>*/}
         </h3>
         <AddItemForm addItem={addTask}/>
-        <ul>
+        <div>
             {taskMap}
-        </ul>
+        </div>
         <FilterBtn changeFilter={props.changeFilter}
                    id={props.id}
                    filter={props.filter}/>
