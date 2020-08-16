@@ -28,28 +28,25 @@ type  PropsType = {
 
 export const TodoList = (props: PropsType) => {
     const taskMap = (props.tasks.map((t) => {
-        let removeTask = () => props.removeTask(t.id, props.id)
-        let changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
-            let newCheckBoxValue = e.currentTarget.checked;
+        const removeTask = () => props.removeTask(t.id, props.id)
+        const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+            const newCheckBoxValue = e.currentTarget.checked;
             props.ChangeTasks(t.id,
                 newCheckBoxValue,
                 props.id)
         }
-        let changeTaskTitle = (newTitle: string) => {
+        const changeTaskTitle = (newTitle: string) => {
             props.ChangeTaskTitle(t.id, newTitle, props.id)
         }
         return (
             <div key={t.id}
-                className={t.isDone ? 'is-done' : ''}>
+                 className={t.isDone ? 'is-done' : ''}>
                 <Checkbox checked={t.isDone}
                           onChange={changeStatus}
                 />
-                {/*<input key={t.id}*/}
-                {/*       type="checkbox"*/}
-                {/*       checked={t.isDone}*/}
-                {/*       onChange={changeStatus}/>*/}
                 <EditableSpan title={t.title}
-                              saveNewTitle={changeTaskTitle}/>
+                              saveNewTitle={changeTaskTitle}
+                />
                 <IconButton onClick={removeTask}>
                     <Delete/>
                 </IconButton>
@@ -74,12 +71,9 @@ export const TodoList = (props: PropsType) => {
                           saveNewTitle={changeTodoListTitle}
             />
             <IconButton onClick={removeListHandler}
-            size={"small"}>
+                        size={"small"}>
                 <Delete/>
             </IconButton>
-            {/*<Button onClick={removeListHandler}*/}
-            {/*        variant={"contained"}*/}
-            {/*        color={"primary"}>X</Button>*/}
         </h3>
         <AddItemForm addItem={addTask}/>
         <div>

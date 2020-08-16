@@ -6,7 +6,7 @@ import {AddItemForm} from "./AddItemForm";
 import {AppBar, Toolbar, IconButton, Typography, Button, Container, Grid, Paper} from '@material-ui/core';
 import {Menu} from "@material-ui/icons";
 
-type TodoListType = {
+export type TodoListType = {
     id: string
     title: string
     filter: FilterValueType
@@ -17,11 +17,12 @@ type TaskStateType = {
 }
 
 export type FilterValueType = 'all' | 'active' | 'completed'
+// export type FilterValueType = string
 
 function App() {
-    let todoListID1 = v1();
-    let todoListID2 = v1();
-    let [todoLists, setTodoLists] = useState<Array<TodoListType>>([
+    const todoListID1 = v1();
+    const todoListID2 = v1();
+    const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
         {id: todoListID1, title: 'What to learn', filter: 'all'},
         {id: todoListID2, title: 'What to by', filter: 'all'}
     ])
@@ -88,7 +89,7 @@ function App() {
     }
 
     function changeTodolistTitle(todoListID: string, newTitle: string) {
-        let todolist = todoLists.find(tl => tl.id === todoListID);
+        const todolist = todoLists.find(tl => tl.id === todoListID);
         if (todolist) {
             todolist.title = newTitle;
             setTodoLists([...todoLists])
@@ -128,8 +129,9 @@ function App() {
                         if (tl.filter === 'completed') {
                             tasksForTodoList = tasks[tl.id].filter(t => t.isDone);
                         }
-                        const changeFilter = (value: FilterValueType, todoListID: string) => {
-                            let todoList = todoLists.find(tl => tl.id === todoListID)
+                        const changeFilter = (value: FilterValueType, todoListID: string) =>
+                        {
+                            const todoList = todoLists.find(tl => tl.id === todoListID)
                             if (todoList) {
                                 todoList.filter = value
                             }

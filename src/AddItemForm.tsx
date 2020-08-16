@@ -7,8 +7,8 @@ export type AddItemFormType = {
 }
 
 export function AddItemForm(props: AddItemFormType) {
-    let [title, setTitle] = useState('')
-    let [error, setError] = useState<string | null>(null)
+    const [title, setTitle] = useState('')
+    const [error, setError] = useState<string | null>(null)
 
     const addItem = () => {
         if (title.trim() !== '') {
@@ -37,17 +37,10 @@ export function AddItemForm(props: AddItemFormType) {
         helperText={error}
         value={title}
         />
-        {/*<input value={title}*/}
-        {/*       placeholder='input task'*/}
-        {/*       onChange={changeInput}*/}
-        {/*       onKeyPress={adOnKeyPress}*/}
-        {/*       className={error ? 'error' : ''}/>*/}
         <IconButton onClick={addItem}
                 color={"primary"}
                 size={"medium"}>
             <AddBox/>
         </IconButton>
-        {/*<button onClick={addItem}>+</button>*/}
-        {/*{error && <div className='error-message'>{error}</div>}*/}
     </div>
 }
