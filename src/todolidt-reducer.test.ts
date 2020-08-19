@@ -1,4 +1,10 @@
-import {AddTodoListAC, ChangeFilterAC, ChangeTitleAC, RemoveTodoListAC, todolistReducer} from './todolist-reducer';
+import {
+    AddTodoListAC,
+    ChangeFilterAC,
+    ChangeTitleAC,
+    RemoveTodoListAC,
+    todolistReducer
+} from './todolist-reducer';
 import {v1} from 'uuid';
 import {FilterValueType, TodoListType} from './App';
 

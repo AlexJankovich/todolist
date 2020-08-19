@@ -22,7 +22,6 @@ function EditableSpan(props: EditableSpanType) {
         setTitle(e.currentTarget.value)
     }
 
-
     return editMode
         ?  <TextField
             onBlur={deActivateEditMode}
