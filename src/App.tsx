@@ -144,14 +144,14 @@ function App() {
                                     key={tl.id}
                                     id={tl.id}
                                     title={tl.title}
-                                    tasks={tasksForTodoList}
-                                    removeTask={removeTask}
-                                    changeFilter={changeFilter}
-                                    addTask={addTask}
-                                    ChangeTasks={ChangeTasks}
+                                    // tasks={tasksForTodoList}
+                                    // removeTask={removeTask}
+                                    // changeFilter={changeFilter}
+                                    // addTask={addTask}
+                                    // ChangeTasks={ChangeTasks}
                                     filter={tl.filter}
                                     removeTodoList={removeTodoList}
-                                    ChangeTaskTitle={ChangeTaskTitle}
+                                    // ChangeTaskTitle={ChangeTaskTitle}
                                     changeTodolistTitle={changeTodolistTitle}
                                 />
                             </Paper>

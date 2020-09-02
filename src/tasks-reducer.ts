@@ -34,7 +34,22 @@ type ActionType = removeTaskActionType |
     RemoveTodolistActionType
     ;
 
-export const tasksReducer = (state: TaskStateType, action: ActionType): TaskStateType => {
+export const todoListID1 = v1();
+export const todoListID2 = v1();
+const initialState: TaskStateType = {
+    [todoListID1]: [
+        {id: v1(), title: 'HTML&CsS', isDone: true},
+        {id: v1(), title: 'JS', isDone: true},
+        {id: v1(), title: 'ReactJS', isDone: false},
+
+    ],
+    [todoListID2]: [
+        {id: v1(), title: 'RestAPI', isDone: false},
+        {id: v1(), title: 'GraphQL', isDone: false},
+    ]
+}
+
+export const tasksReducer = (state: TaskStateType = initialState, action: ActionType): TaskStateType => {
     switch (action.type) {
         case "REMOVE-TASK":
             let newTodoList = [...state[action.todolistId].filter(t => t.id !== action.taskID)]
@@ -70,7 +85,7 @@ export const tasksReducer = (state: TaskStateType, action: ActionType): TaskStat
             return newState
         }
         default :
-            throw new Error('invalid data')
+            return state
     }
 }
 
