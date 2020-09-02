@@ -1,7 +1,6 @@
 import {TaskStateType} from "./App";
 import {v1} from "uuid";
 import {AAdTodoListActionType, RemoveTodolistActionType} from "./todolist-reducer";
-import {TaskType} from "./Todolist";
 
 export type removeTaskActionType = {
     type: 'REMOVE-TASK',
@@ -37,22 +36,22 @@ type ActionType = removeTaskActionType |
 export const todoListID1 = v1();
 export const todoListID2 = v1();
 const initialState: TaskStateType = {
-    [todoListID1]: [
-        {id: v1(), title: 'HTML&CsS', isDone: true},
-        {id: v1(), title: 'JS', isDone: true},
-        {id: v1(), title: 'ReactJS', isDone: false},
+    // [todoListID1]: [
+        // {id: v1(), title: 'HTML&CsS', isDone: true},
+        // {id: v1(), title: 'JS', isDone: true},
+        // {id: v1(), title: 'ReactJS', isDone: false},
 
-    ],
-    [todoListID2]: [
-        {id: v1(), title: 'RestAPI', isDone: false},
-        {id: v1(), title: 'GraphQL', isDone: false},
-    ]
+    // ],
+    // [todoListID2]: [
+    //     {id: v1(), title: 'RestAPI', isDone: false},
+    //     {id: v1(), title: 'GraphQL', isDone: false},
+    // ]
 }
 
 export const tasksReducer = (state: TaskStateType = initialState, action: ActionType): TaskStateType => {
     switch (action.type) {
         case "REMOVE-TASK":
-            let newTodoList = [...state[action.todolistId].filter(t => t.id !== action.taskID)]
+            // let newTodoList = [...state[action.todolistId].filter(t => t.id !== action.taskID)]
             return {
                 ...state,
                 [action.todolistId]:
@@ -61,18 +60,25 @@ export const tasksReducer = (state: TaskStateType = initialState, action: Action
             let newTask = {id: v1(), title: action.task, isDone: false}
             return {...state, [action.todolistId]: [newTask, ...state[action.todolistId]]};
         case "CHANGE-TASK-STATUS": {
-            return {
-                ...state,
-                [action.todoListID]:
-                    changeTitleAndStatus(state[action.todoListID], action.id, action.isDone)
-            }
+            debugger
+            let tlTasks=state[action.todoListID]
+
+            let newTaskArray = tlTasks
+                .map(t=>t.id===action.id?{...t,isDone:action.isDone}:t)
+            // state[action.todoListID]=newTaskArray
+            return {...state, [action.todoListID]: newTaskArray}
+            // return {
+            //     ...state,
+            //     [action.todoListID]:[...state[action.todoListID]].filter(t=>t.id !==action.id), isDone: action.isDone
+            // }
         }
         case "CHANGE-TASK-TITLE": {
-            return {
-                ...state,
-                [action.todoListID]:
-                    changeTitleAndStatus(state[action.todoListID], action.id, action.newTitle)
-            }
+                let tlTasks=state[action.todoListID]
+                let newTaskArray = tlTasks
+                    .map(t=>t.id===action.id?{...t,title:action.newTitle}:t)
+                state[action.todoListID]=newTaskArray
+                return {...state, [action.todoListID]: newTaskArray}
+
         }
         case 'ADD-TODOLIST': {
             return {
@@ -105,14 +111,14 @@ export const changeTaskTitleAC = (id: string, newTitle: string, todoListID: stri
     return {type: 'CHANGE-TASK-TITLE', id, newTitle, todoListID}
 }
 
-let changeTitleAndStatus = (tasks: Array<TaskType>, id: string, property: string | boolean): Array<TaskType> => {
-    let propertyName = typeof property === 'string' ? 'title' : 'isDone';
-    return tasks.map(t => {
-            if (t.id !== id) {
-                return t
-            } else {
-                return {...t, [propertyName]: property}
-            }
-        }
-    )
-}
+// let changeTitleAndStatus = (tasks: Array<TaskType>, id: string, property: string | boolean): Array<TaskType> => {
+//     let propertyName = typeof property === 'string' ? 'title' : 'isDone';
+//     return tasks.map(t => {
+//             if (t.id !== id) {
+//                 return t
+//             } else {
+//                 return {...t, [propertyName]: property}
+//             }
+//         }
+//     )
+// }
