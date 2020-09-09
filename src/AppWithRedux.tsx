@@ -4,9 +4,9 @@ import {TaskType, TodoList} from "./Todolist";
 import {AddItemForm} from "./AddItemForm";
 import {AppBar, Toolbar, IconButton, Typography, Button, Container, Grid, Paper} from '@material-ui/core';
 import {Menu} from "@material-ui/icons";
-import {AddTodoListAC, ChangeTitleAC, RemoveTodoListAC } from "./todolist-reducer";
+import {AddTodoListAC, ChangeTitleAC, RemoveTodoListAC } from "./store/todolist-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./store";
+import {AppRootStateType} from "./store/store";
 
 export type TodoListType = {
     id: string

@@ -6,8 +6,8 @@ import {FilterBtn} from "./filterBtn";
 import { IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "./store";
-import {ChangeFilterAC} from "./todolist-reducer";
+import {AppRootStateType} from "./store/store";
+import {ChangeFilterAC} from "./store/todolist-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./tasks-reducer";
 import {Task} from "./Task";
 

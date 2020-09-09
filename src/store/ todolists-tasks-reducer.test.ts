@@ -1,6 +1,6 @@
-import {TaskStateType, TodoListType} from "./App";
+import {TaskStateType, TodoListType} from "../App";
 import {AddTodoListAC, RemoveTodoListAC, todolistReducer} from "./todolist-reducer";
-import {tasksReducer} from "./tasks-reducer";
+import {tasksReducer} from "../tasks-reducer";
 
 let startState: TaskStateType = {}
 
